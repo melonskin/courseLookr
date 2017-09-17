@@ -23,10 +23,10 @@ public class CourseController {
     }
 
     @RequestMapping(value="/{courseId}", method=RequestMethod.GET)
-    public String spittle(
+    public String course(
             @PathVariable("courseId") int courseId,
             Model model) {
-        model.addAttribute(courseRepository.findOneById(courseId));
-        return "courseId";
+        model.addAttribute("course", courseRepository.findOneById(courseId));
+        return "course";
     }
 }

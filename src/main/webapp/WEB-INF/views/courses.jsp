@@ -14,7 +14,7 @@
         <ul>
             <c:forEach items="${coursesList}" var="course" >
                 <li>
-                    <p>${course.department} ${course.number}: ${course.name}</p>
+                    <a href="courses/${course.id}">${course.department} ${course.number}: ${course.name}</a>
                 </li>
             </c:forEach>
         </ul>
