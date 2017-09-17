@@ -5,6 +5,7 @@ import courseLookr.repository.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -21,14 +22,11 @@ public class CourseController {
         this.courseRepository = courseRepository;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
-    public String courses(Model model) {
-        List<Course> courseList = courseRepository.findCourses(
-                Integer.MAX_VALUE, 20);
-        System.out.println(courseList.size());
-        model.addAttribute("coursesList",
-                courseRepository.findCourses(
-                        Integer.MAX_VALUE, 20));
-        return "courses";
+    @RequestMapping(value="/{courseId}", method=RequestMethod.GET)
+    public String spittle(
+            @PathVariable("courseId") int courseId,
+            Model model) {
+        model.addAttribute(courseRepository.findOneById(courseId));
+        return "courseId";
     }
 }

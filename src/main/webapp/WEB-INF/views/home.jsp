@@ -18,19 +18,32 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
     <%--<link rel="stylesheet"--%>
-          <%--type="text/css"--%>
-          <%--href="<c:url value="/resources/style.css" />" >--%>
+    <%--type="text/css"--%>
+    <%--href="<c:url value="/resources/style.css" />" >--%>
 </head>
 <body>
-<h1>Welcome to CourseLookr</h1>
+    <h1>Welcome to CourseLookr</h1>
 
-<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 
-<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-<%--<a href="<c:url value="/spittles" />">Spittles</a> |--%>
-<%--<a href="<c:url value="/spitter/register" />">Register</a>--%>
+    <%--<a href="<c:url value="/spittles" />">Spittles</a> |--%>
+    <%--<a href="<c:url value="/spitter/register" />">Register</a>--%>
+    <div>
+        <h1>Search a course: </h1>
+        <form method="POST" name="courseForm">
+            Department: <input type="text" name="department">
+            <br>
+            Number:     <input type="text" name="number">
+            <br>
+            Name:       <input type="text" name="name">
+            <br>
+            <input type="submit" value="Search"/>
+        </form>
+    </div>
+
 </body>
 </html>

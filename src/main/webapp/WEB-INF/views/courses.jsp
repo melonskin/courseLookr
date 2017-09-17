@@ -10,15 +10,11 @@
 </head>
 <body>
     <div>
-        <h1>Courses</h1>
-        <p><c:out value="${coursesList.size()}"></c:out></p>
-        <c:forEach var = "i" begin = "1" end = "5">
-            Item <c:out value = "${i}"/><p>
-        </c:forEach>
+        <h1>Course search result:</h1>
         <ul>
             <c:forEach items="${coursesList}" var="course" >
                 <li>
-                    <p>${course.department}</p>
+                    <p>${course.department} ${course.number}: ${course.name}</p>
                 </li>
             </c:forEach>
         </ul>
