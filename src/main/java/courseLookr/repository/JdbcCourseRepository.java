@@ -2,6 +2,7 @@ package courseLookr.repository;
 
 import courseLookr.pojo.Course;
 import courseLookr.pojo.Section;
+import courseLookr.sqlQuery.QueryForCourse;
 import courseLookr.web.CourseForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcOperations;
@@ -40,23 +41,20 @@ public class JdbcCourseRepository implements CourseRepository {
         } else {
             queryValues[2] = "%" + name.trim().toLowerCase() + "%";
         }
-        List<Course> coursesList = jdbcOperations.query("select id, department, number, name, credit, description"
-                + " from course"
-                + " where department like ? and number like ? and name like ?",
+        return jdbcOperations.query(QueryForCourse.searchCoursesQuery,
                 new CourseRowMapper(), queryValues[0], queryValues[1], queryValues[2]);
-        return coursesList;
     }
 
     public Course findOneById(int courseId) {
-        return jdbcOperations.queryForObject("select * from course where id = ?", new CourseRowMapper(), courseId);
+        return jdbcOperations.queryForObject(QueryForCourse.findOneCourseByIdQuery, new CourseRowMapper(), courseId);
     }
 
     public List<Section> findSectionsByCourseId(int courseId) {
-        return jdbcOperations.query("select * from section where course_id = ? order by year asc, term asc", new SectionRowMapper(), courseId);
+        return jdbcOperations.query(QueryForCourse.findSectionsByCourseIdQuery, new SectionRowMapper(), courseId);
     }
 
     public void updateCourseInfo(int courseId, CourseForm form) {
-        jdbcOperations.update("UPDATE course SET name = ?, credit = ?, description = ? WHERE id = ?",
+        jdbcOperations.update(QueryForCourse.updateCourseInfo,
                 form.getName(), form.getCredit(), form.getDescription(), courseId);
     }
 
