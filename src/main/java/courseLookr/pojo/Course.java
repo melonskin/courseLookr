@@ -1,11 +1,23 @@
 package courseLookr.pojo;
 
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
+
 public class Course {
     private final int id;
     private final String department;
     private final String number;
+    @NotNull
+    @Size(min = 6)
     private final String name;
+    @NotNull
+    @Digits(integer = 2, fraction = 0)
+    @Positive
     private final String credit;
+    @NotNull
+    @Size(min = 6)
     private final String description;
 
     public Course(

@@ -1,16 +1,28 @@
 package courseLookr.web;
 
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
+
 public class CourseForm {
 
     private String department;
 
     private String number;
 
+    @NotNull
+    @Size(min = 2)
     private String name;
 
-    private String description;
-
+    @NotNull
+    @Digits(integer = 2, fraction = 0)
+    @Positive
     private String credit;
+
+    @NotNull
+    @Size(min = 6)
+    private String description;
 
     public String getDepartment() {
         return department;
