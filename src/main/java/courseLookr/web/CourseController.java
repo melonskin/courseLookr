@@ -5,11 +5,13 @@ import courseLookr.repository.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 
@@ -42,13 +44,18 @@ public class CourseController {
     }
 
     @RequestMapping(value="/{courseId}/edit", method=RequestMethod.POST)
-    public void editPost(@PathVariable("courseId") int courseId,
-                           CourseForm form, Model model, HttpServletResponse http) {
-        courseRepository.updateCourseInfo(courseId, form);
-        model.addAttribute("course", courseRepository.findOneById(courseId));
-        try {
-            http.sendRedirect("/courses/" + courseId);
-        } catch (IOException e){
+    public String editPost(@PathVariable("courseId") int courseId,
+                          Model model, HttpServletResponse http, @Valid CourseForm form, Errors errors) {
+        if (errors.hasErrors()) {
+            Course course = courseRepository.findOneById(courseId);
+            model.addAttribute("course", course);
+            return "courseEdit";
         }
+        courseRepository.updateCourseInfo(courseId, form);
+        return "redirect:/courses/" + courseId;
+//        try {
+//            http.sendRedirect("/courses/" + courseId);
+//        } catch (IOException e){
+//        }
     }
 }
