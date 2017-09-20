@@ -1,6 +1,5 @@
 package courseLookr.repository;
 
-import courseLookr.pojo.Course;
 import courseLookr.pojo.Interest;
 import courseLookr.pojo.Program;
 import courseLookr.pojo.Package;
@@ -66,7 +65,6 @@ public class JdbcProgramRepository implements ProgramRepository {
             return new Interest(
                     rs.getInt("id"),
                     rs.getString("name"));
-
         }
     }
 }
