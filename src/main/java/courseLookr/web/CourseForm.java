@@ -11,17 +11,16 @@ public class CourseForm {
 
     private String number;
 
-    @NotNull
-    @Size(min = 2)
+    @NotNull(message = "Name cannot be empty")
     private String name;
 
-    @NotNull
-    @Digits(integer = 2, fraction = 0)
-    @Positive
+    @NotNull(message = "Credit cannot be empty")
+    @Digits(integer = 2, fraction = 0, message = "Credit must be a reasonable integer")
+    @Positive(message = "Credit must be positive")
     private String credit;
 
-    @NotNull
-    @Size(min = 6)
+    @NotNull(message = "Description cannot be empty")
+    @Size(min = 6, message = "Description length cannot be shorter than 6")
     private String description;
 
     public String getDepartment() {

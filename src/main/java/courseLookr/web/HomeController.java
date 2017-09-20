@@ -2,6 +2,7 @@ package courseLookr.web;
 
 import courseLookr.pojo.Course;
 import courseLookr.repository.CourseRepository;
+import courseLookr.repository.ProgramRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,14 +15,18 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @RequestMapping({"/", "/home"})
 public class HomeController {
     private CourseRepository courseRepository;
+    private ProgramRepository programRepository;
 
     @Autowired
-    public HomeController(CourseRepository courseRepository) {
+    public HomeController(CourseRepository courseRepository, ProgramRepository programRepository) {
         this.courseRepository = courseRepository;
+        this.programRepository = programRepository;
     }
 
     @RequestMapping(method = GET)
-    public String home() {
+    public String home(Model model) {
+        model.addAttribute("programs",
+                programRepository.getAllPrograms());
         return "home";
     }
 

@@ -8,6 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
+<%@ page isELIgnored="false" %>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -33,7 +35,7 @@
     <%--<a href="<c:url value="/spittles" />">Spittles</a> |--%>
     <%--<a href="<c:url value="/spitter/register" />">Register</a>--%>
     <div>
-        <h1>Search a course: </h1>
+        <h2>Search a course: </h2>
         <form method="POST" name="courseForm">
             Department: <input type="text" name="department">
             <br>
@@ -43,6 +45,19 @@
             <br>
             <input type="submit" value="Search"/>
         </form>
+    </div>
+
+    <div>
+        <h2>Look for course based on programs: </h2>
+        <ul>
+            <c:forEach items="${programs}" var="program">
+                <li>
+                    <a href="/program/${program.id}">
+                        ${program.name} (${program.acronym})
+                    </a>
+                </li>
+            </c:forEach>
+        </ul>
     </div>
 
 </body>

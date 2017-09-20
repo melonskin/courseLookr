@@ -45,10 +45,11 @@ public class CourseController {
 
     @RequestMapping(value="/{courseId}/edit", method=RequestMethod.POST)
     public String editPost(@PathVariable("courseId") int courseId,
-                          Model model, HttpServletResponse http, @Valid CourseForm form, Errors errors) {
+                          Model model, @Valid CourseForm form, Errors errors) {
         if (errors.hasErrors()) {
             Course course = courseRepository.findOneById(courseId);
             model.addAttribute("course", course);
+            model.addAttribute("errors", errors.getAllErrors());
             return "courseEdit";
         }
         courseRepository.updateCourseInfo(courseId, form);

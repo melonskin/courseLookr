@@ -18,6 +18,17 @@
 <body>
     <h2>Update info for ${course.department} ${course.number} ${course.name}</h2>
     <div>
+        <ul>
+            <c:forEach items="${errors}" var="error">
+                <li>
+                    <span style="color:red">
+                        ${error.defaultMessage}
+                    </span>
+                </li>
+            </c:forEach>
+        </ul>
+    </div>
+    <div>
         <form:form method="POST" modelAttribute="course">
             <%--Department:<form:input path="department" /><br>--%>
             <%--Number:<form:input path="number" /><br>--%>
