@@ -11,4 +11,6 @@ public interface CourseRepository {
     Course findOneById(int courseId);
     List<Section> findSectionsByCourseId(int courseId);
     void updateCourseInfo(int courseId, CourseForm form);
+    List<Course> getCoursesForPackage(int packageId);
+    List<Course> getCoursesForInterest(int interestId);
 }

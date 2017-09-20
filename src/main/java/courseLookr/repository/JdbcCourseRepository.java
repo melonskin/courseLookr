@@ -58,6 +58,13 @@ public class JdbcCourseRepository implements CourseRepository {
                 form.getName(), form.getCredit(), form.getDescription(), courseId);
     }
 
+    public List<Course> getCoursesForPackage(int packageId) {
+        return jdbcOperations.query(QueryForCourse.getCoursesForPackage, new CourseRowMapper(), packageId);
+    }
+
+    public List<Course> getCoursesForInterest(int interestId) {
+        return jdbcOperations.query(QueryForCourse.getCoursesForInterest, new CourseRowMapper(), interestId);
+    }
     private static class CourseRowMapper implements RowMapper<Course> {
         public Course mapRow(ResultSet rs, int rowNum) throws SQLException {
             return new Course(

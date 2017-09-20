@@ -26,7 +26,9 @@ public class ProgramController {
     @RequestMapping(value="/{programId}", method= RequestMethod.GET)
     public String course(@PathVariable("programId") int programId,
                          Model model) {
+        Program program = programRepository.getProgram(programId);
 
+        model.addAttribute("program", program);
         return "program";
     }
 }
