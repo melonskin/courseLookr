@@ -26,14 +26,12 @@
 <body>
     <h1>Welcome to CourseLookr</h1>
 
-    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <!-- jQuery bootstrap.min.js  -->
     <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <!-- Bootstrap  JavaScript  -->
     <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-    <%--<a href="<c:url value="/spittles" />">Spittles</a> |--%>
-    <%--<a href="<c:url value="/spitter/register" />">Register</a>--%>
     <div>
         <h2>Search a course: </h2>
         <form method="POST" name="courseForm">

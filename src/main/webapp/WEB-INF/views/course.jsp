@@ -13,8 +13,15 @@
 <html>
 <head>
     <title>${course.department} ${course.number} ${course.name}</title>
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
 </head>
 <body>
+    <!-- jQuery bootstrap.min.js  -->
+    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+
+    <!-- Bootstrap  JavaScript  -->
+    <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <div>
         <h1>${course.department} ${course.number} ${course.name}</h1>
         <p>Credit: ${course.credit}</p>
