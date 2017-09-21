@@ -3,6 +3,8 @@ package courseLookr.web;
 import courseLookr.repository.CourseRepository;
 import courseLookr.repository.InterestRepository;
 import courseLookr.repository.PackageRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,9 @@ public class InterestController {
 
     private CourseRepository courseRepository;
     private InterestRepository interestRepository;
+
+    private final Logger logger = LoggerFactory.getLogger(InterestController.class);
+
 
     @Autowired
     public InterestController(CourseRepository courseRepository, InterestRepository interestRepository) {

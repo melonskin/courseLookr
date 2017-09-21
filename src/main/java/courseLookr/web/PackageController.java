@@ -4,6 +4,8 @@ import courseLookr.repository.CourseRepository;
 import courseLookr.repository.PackageRepository;
 import courseLookr.repository.ProgramRepository;
 import courseLookr.pojo.Package;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +21,9 @@ public class PackageController {
     private CourseRepository courseRepository;
     private PackageRepository packageRepository;
     private ProgramRepository programRepository;
+
+    private final Logger logger = LoggerFactory.getLogger(PackageController.class);
+
 
     @Autowired
     public PackageController(CourseRepository courseRepository, PackageRepository packageRepository

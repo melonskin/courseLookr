@@ -29,9 +29,14 @@
             <c:forEach items="${courses}" var="course">
                 <li>
                     <a href="/courses/${course.id}">${course.department} ${course.number} ${course.name}</a>
+                    <a href="/courseInterest/delete/${course.id}_${interest.id}">delete</a>
                 </li>
             </c:forEach>
         </ul>
+    </div>
+
+    <div>
+        <a
     </div>
 </body>
 </html>
