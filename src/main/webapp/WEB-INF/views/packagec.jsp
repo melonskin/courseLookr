@@ -14,6 +14,7 @@
 <head>
     <title>Package: ${packagec.name} for ${program.acronym}</title>
     <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <jsp:include page="./layout/header.jsp" />
 
 </head>
 <body>

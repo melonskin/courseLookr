@@ -7,6 +7,7 @@
 <head>
     <title>Courses</title>
     <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <jsp:include page="./layout/header.jsp" />
 
 <%--<link rel="stylesheet" type="text/css" href="<c:url value="/resources/style.css" />" >--%>
 </head>
