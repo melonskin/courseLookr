@@ -16,15 +16,34 @@
 
     <!-- Bootstrap  JavaScript  -->
     <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <div>
+    <div class="container">
         <h1>Course search result:</h1>
-        <ul>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Department</th>
+                <th>Number</th>
+                <th>Course</th>
+                <th>Credit</th>
+            </tr>
+            </thead>
             <c:forEach items="${coursesList}" var="course" >
-                <li>
-                    <a href="courses/${course.id}">${course.department} ${course.number}: ${course.name}</a>
-                </li>
+                <tr>
+                    <td>
+                        ${course.department}
+                    </td>
+                    <td>
+                        ${course.number}
+                    </td>
+                    <td>
+                        <a href="courses/${course.id}">${course.name}</a>
+                    </td>
+                    <td>
+                        ${course.credit}
+                    </td>
+                </tr>
             </c:forEach>
-        </ul>
+        </table>
     </div>
 </body>
 </html>

@@ -22,21 +22,44 @@
 
     <!-- Bootstrap  JavaScript  -->
     <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <h1>Interest package: ${interest.name}</h1>
 
-    <div>
-        <ul>
-            <c:forEach items="${courses}" var="course">
-                <li>
-                    <a href="/courses/${course.id}">${course.department} ${course.number} ${course.name}</a>
-                    <a href="/courseInterest/delete/${course.id}_${interest.id}">delete</a>
-                </li>
-            </c:forEach>
-        </ul>
+    <div class="container">
+        <h1>Interest package: ${interest.name}</h1>
+        <br>
+        <div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            Number
+                        </th>
+                        <th>
+                            Course
+                        </th>
+                        <th>
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                <c:forEach items="${courses}" var="course">
+                    <tr>
+                        <td>
+                                ${course.department} ${course.number}
+                        </td>
+                        <td>
+                            <a href="/courses/${course.id}">${course.name}</a>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger"
+                                    onclick="this.disabled=true;post('/courseInterest/${course.id}_${interest.id}/delete')">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </table>
+        </div>
     </div>
 
-    <div>
-        <a
-    </div>
 </body>
 </html>

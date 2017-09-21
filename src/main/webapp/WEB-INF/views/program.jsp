@@ -23,41 +23,45 @@
 
     <!-- Bootstrap  JavaScript  -->
     <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <h1>${program.name} (${program.acronym})</h1>
+    <div class="container">
+        <h1>${program.name} (${program.acronym})</h1>
 
-    <div>
-        <h2>Required course packages: </h2>
-        <c:if test = "${packages.size()==0}">
-            <p>No required packages for this program.</p>
-        </c:if>
-        <c:if test="${packages.size()>0}">
-            <ul>
-                <c:forEach items="${packages}" var="packagec">
-                    <li>
-                        <a href="/package/${packagec.id}">
-                                ${packagec.name}
+        <div  class="row col-md-6 col-md-offset-3">
+            <br>
+            <h2>Required course packages: </h2>
+            <c:if test = "${packages.size()==0}">
+                <p>No required packages for this program.</p>
+            </c:if>
+            <c:if test="${packages.size()>0}">
+                <ul  class="list-group">
+                    <c:forEach items="${packages}" var="packagec">
+                        <li class="list-group-item text-center">
+                            <a href="/package/${packagec.id}">
+                                    ${packagec.name}
+                            </a>
+                        </li>
+                    </c:forEach>
+                </ul>
+            </c:if>
+
+            <br>
+            <hr>
+            <h2>Course packages based on interest: </h2>
+            <c:if test = "${interests.size()==0}">
+                <p>No interest packages for this program.</p>
+            </c:if>
+            <ul  class="list-group">
+                <c:forEach items="${interests}" var="interest">
+                    <li class="list-group-item text-center">
+                        <a href="/interest/${interest.id}">
+                                ${interest.name}
                         </a>
                     </li>
                 </c:forEach>
             </ul>
-        </c:if>
+        </div>
     </div>
 
-    <div>
-        <h2>Selected course packages based on interest: </h2>
-        <c:if test = "${interests.size()==0}">
-            <p>No interest packages for this program.</p>
-        </c:if>
-        <ul>
-            <c:forEach items="${interests}" var="interest">
-                <li>
-                    <a href="/interest/${interest.id}">
-                            ${interest.name}
-                    </a>
-                </li>
-            </c:forEach>
-        </ul>
-    </div>
 
 </body>
 </html>
