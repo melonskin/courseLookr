@@ -48,17 +48,46 @@
                                 ${course.department} ${course.number}
                         </td>
                         <td>
-                            <a href="/courses/${course.id}">${course.name}</a>
+                            ${course.name}
                         </td>
                         <td>
-                            <button class="btn btn-danger"
-                                    onclick="this.disabled=true;post('/courseInterest/${course.id}_${interest.id}/delete')">
-                                Delete
-                            </button>
+                            <button class="btn btn-info"
+                                    style="float: left;margin-right:5px;margin-bottom: 0px" onclick="location.href='/courses/${course.id}'">View</button>
+                            <form class="form-inline form-group" style="float: left;margin-right:5px;margin-bottom: 0px" action='/interestCourse/${interest.id}_${course.id}/delete' method="post">
+                                <button name="deleteRelation" value="delete" class="btn btn-danger">
+                                    Delete
+                                </button>
+                            </form>
+
                         </td>
                     </tr>
                 </c:forEach>
             </table>
+        </div>
+        <div class="row col-md-6 col-md-offset-3">
+            <hr>
+            <h3>Add a course: </h3>
+            <form class="form-horizontal" action="/interestCourse/${interest.id}" method="POST" name="courseForm">
+                <label class="col-sm-2 control-label">Department<br></label>
+                <div class="col-sm-10">
+                    <input type="text" name="department" class="form-control" placeholder="CSCE">
+                    <br>
+                </div>
+                <br>
+                <label class="col-sm-2 control-label">Number<br></label>
+                <div class="col-sm-10">
+                    <input type="text" name="number" class="form-control" placeholder="608">
+                    <br>
+                </div>
+                <br>
+                <div class="form-group">
+                    <div class="col-sm-10  col-sm-offset-5">
+                        <br>
+                        <button type="submit" class="btn btn-primary">Add
+                        </button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 

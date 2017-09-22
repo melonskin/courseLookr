@@ -26,6 +26,7 @@
 
     <div class="container">
         <h1>Required package for ${program.acronym}: ${packagec.name}</h1>
+        <h2>Pick at least ${packagec.no_required} from following list</h2>
         <br>
         <div>
             <table class="table table-striped">

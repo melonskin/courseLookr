@@ -32,9 +32,6 @@
     <div class="container">
         <h1>Welcome to CourseLookr</h1>
         <br>
-        <div  class="row col-mid-6">
-
-        </div>
         <br>
 
         <div class="row col-md-6 col-md-offset-3">

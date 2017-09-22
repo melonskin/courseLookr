@@ -24,6 +24,9 @@ public class JdbcCourseRepository implements CourseRepository {
         this.jdbcOperations = jdbcOperations;
     }
 
+    public Course searchCourse(String department, String number) {
+        return jdbcOperations.queryForObject(QueryForCourse.searchCourse, new CourseRowMapper(), department, number);
+    }
     public List<Course> searchCourses(String department, String number, String name) {
         String[] queryValues = new String[3];
         if (department == null || department.equals("")) {

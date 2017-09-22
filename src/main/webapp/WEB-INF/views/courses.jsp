@@ -26,6 +26,7 @@
                 <th>Number</th>
                 <th>Course</th>
                 <th>Credit</th>
+                <th>Action</th>
             </tr>
             </thead>
             <c:forEach items="${coursesList}" var="course" >
@@ -37,10 +38,14 @@
                         ${course.number}
                     </td>
                     <td>
-                        <a href="courses/${course.id}">${course.name}</a>
+                        ${course.name}
                     </td>
                     <td>
                         ${course.credit}
+                    </td>
+                    <td>
+                        <button class="btn btn-info"
+                                onclick="location.href='/courses/${course.id}'">View</button>
                     </td>
                 </tr>
             </c:forEach>

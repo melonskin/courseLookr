@@ -13,4 +13,5 @@ public interface CourseRepository {
     void updateCourseInfo(int courseId, CourseForm form);
     List<Course> getCoursesForPackage(int packageId);
     List<Course> getCoursesForInterest(int interestId);
+    Course searchCourse(String department, String number);
 }
