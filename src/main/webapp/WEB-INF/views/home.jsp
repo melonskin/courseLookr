@@ -19,46 +19,88 @@
 
     <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
-    <%--<link rel="stylesheet"--%>
-    <%--type="text/css"--%>
-    <%--href="<c:url value="/resources/style.css" />" >--%>
+    <link rel="stylesheet"
+    type="text/css"
+    href="<c:url value="/resources/style.css" />" >
 </head>
 <body>
-    <h1>Welcome to CourseLookr</h1>
-
-    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <!-- jQuery bootstrap.min.js  -->
     <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <!-- Bootstrap  JavaScript  -->
     <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <div class="container">
+        <h1>Welcome to CourseLookr</h1>
+        <br>
+        <br>
 
-    <%--<a href="<c:url value="/spittles" />">Spittles</a> |--%>
-    <%--<a href="<c:url value="/spitter/register" />">Register</a>--%>
-    <div>
-        <h2>Search a course: </h2>
-        <form method="POST" name="courseForm">
-            Department: <input type="text" name="department">
+        <div class="row col-md-6 col-md-offset-3">
+            <h2>Search a course: </h2>
+            <form class="form-horizontal" method="POST" name="courseForm">
+                <label class="col-sm-2 control-label">Department<br></label>
+                <div class="col-sm-10">
+                    <input type="text" name="department" class="form-control" placeholder="CSCE">
+                    <br>
+                </div>
+                <br>
+                <label class="col-sm-2 control-label">Number<br></label>
+                <div class="col-sm-10">
+                    <input type="text" name="number" class="form-control" placeholder="608">
+                    <br>
+                </div>
+                <br>
+                <label class="col-sm-2 control-label">Name<br></label>
+                <div class="col-sm-10">
+                    <input type="text" name="name" class="form-control" placeholder="Database">
+                    <br>
+                </div>
+                <br>
+                <div class="form-group">
+                    <div class="col-sm-10  col-sm-offset-5">
+                        <br>
+                        <button type="submit" class="btn btn-primary">Search course
+                        </button>
+                    </div>
+                </div>
+            </form>
             <br>
-            Number:     <input type="text" name="number">
-            <br>
-            Name:       <input type="text" name="name">
-            <br>
-            <input type="submit" value="Search"/>
-        </form>
+            <hr>
+            <h2>Courses related to programs: </h2>
+
+            <table  class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Acronym
+                        </th>
+                        <th>
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                <c:forEach items="${programs}" var="program">
+                    <tr>
+                        <td>
+                                ${program.name}
+                        </td>
+                        <td>
+                            ${program.acronym}
+                        </td>
+                        <td>
+                            <button class="btn btn-info"
+                                    onclick="location.href='/program/${program.id}'">View</button>
+                        </td>
+                        </td>
+
+                    </tr>
+                </c:forEach>
+            </table>
+        </div>
     </div>
 
-    <div>
-        <h2>Look for course based on programs: </h2>
-        <ul>
-            <c:forEach items="${programs}" var="program">
-                <li>
-                    <a href="/program/${program.id}">
-                        ${program.name} (${program.acronym})
-                    </a>
-                </li>
-            </c:forEach>
-        </ul>
-    </div>
 
 </body>
 </html>

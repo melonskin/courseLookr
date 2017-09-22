@@ -9,6 +9,4 @@ import java.util.List;
 public interface ProgramRepository {
     List<Program> getAllPrograms();
     Program getProgram(int id);
-    List<Package> getPackagesForProgram(int id);
-    List<Interest> getInterestsForProgram(int id);
 }
