@@ -58,7 +58,7 @@
                 <div class="form-group">
                     <div class="col-sm-10  col-sm-offset-5">
                         <br>
-                        <button type="submit" class="btn btn-primary">Search
+                        <button type="submit" class="btn btn-primary">Search course
                         </button>
                     </div>
                 </div>
@@ -76,17 +76,23 @@
                         <th>
                             Acronym
                         </th>
+                        <th>
+                            Action
+                        </th>
                     </tr>
                 </thead>
                 <c:forEach items="${programs}" var="program">
                     <tr>
                         <td>
-                            <a href="/program/${program.id}">
-                                    ${program.name}
-                            </a>
+                                ${program.name}
                         </td>
                         <td>
                             ${program.acronym}
+                        </td>
+                        <td>
+                            <button class="btn btn-info"
+                                    onclick="location.href='/program/${program.id}'">View</button>
+                        </td>
                         </td>
 
                     </tr>
