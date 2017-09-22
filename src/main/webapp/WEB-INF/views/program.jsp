@@ -34,15 +34,29 @@
                 <p>No required packages for this program.</p>
             </c:if>
             <c:if test="${packages.size()>0}">
-                <ul  class="list-group">
-                    <c:forEach items="${packages}" var="packagec">
-                        <li class="list-group-item text-center">
-                            <a href="/package/${packagec.id}">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>No. required</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <c:forEach items="${packages}" var="packagec" >
+                        <tr>
+                            <td>
                                     ${packagec.name}
-                            </a>
-                        </li>
+                            </td>
+                            <td>
+                                    ${packagec.no_required}
+                            </td>
+                            <td>
+                                <button class="btn btn-info"
+                                        onclick="location.href='/package/${packagec.id}'">View</button>
+                            </td>
+                        </tr>
                     </c:forEach>
-                </ul>
+                </table>
             </c:if>
 
             <br>
@@ -51,18 +65,26 @@
             <c:if test = "${interests.size()==0}">
                 <p>No interest packages for this program.</p>
             </c:if>
-            <ul  class="list-group">
-                <c:forEach items="${interests}" var="interest">
-                    <li class="list-group-item text-center">
-                        <a href="/interest/${interest.id}">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <c:forEach items="${interests}" var="interest" >
+                    <tr>
+                        <td>
                                 ${interest.name}
-                        </a>
-                    </li>
+                        </td>
+                        <td>
+                            <button class="btn btn-info"
+                                    onclick="location.href='/interest/${interest.id}'">View</button>
+                        </td>
+                    </tr>
                 </c:forEach>
-            </ul>
+            </table>
         </div>
     </div>
-
-
 </body>
 </html>

@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/interestCourse")
 public class InterestCourseController {
@@ -46,9 +48,9 @@ public class InterestCourseController {
     @RequestMapping(value = "/{interestId}", method = RequestMethod.POST)
     public String insert(@PathVariable("interestId") int interestId,
                          CourseForm form, Model model) {
-        Course course = courseRepository.searchCourse(form.getDepartment(), form.getNumber());
-        if (course != null) {
-            int courseId = course.getId();
+        List<Course> courses = courseRepository.searchCourse(form.getDepartment(), form.getNumber());
+        if (!courses.isEmpty()) {
+            int courseId = courses.get(0).getId();
             interestCourseRepository.addInterestCourseRelation(interestId, courseId);
         }
         model.addAttribute("interest", interestRepository.getInterest(interestId));
