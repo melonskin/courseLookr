@@ -15,7 +15,7 @@ public class DataConfig {
     public BasicDataSource dataSource() {
         BasicDataSource ds = new BasicDataSource();
         ds.setDriverClassName("com.mysql.jdbc.Driver");
-        ds.setUrl("jdbc:mysql://165.227.22.37:3306/course_lookr");
+        ds.setUrl("jdbc:mysql://127.0.0.1:3306/course_lookr");
 //                + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
         ds.setUsername("root");
         ds.setPassword("root");
