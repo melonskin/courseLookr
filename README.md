@@ -85,10 +85,10 @@ The degree program and course package information are input manually, since it i
 ## E-R diagram of DB
 
 
-The E-R diagram is plotted as below.
+The E-R diagram is plotted as Fig. 1.
 
 
-![E-R diagram](./media/erd.png)
+![E-R diagram](./media/erd.png){ height=70% }
 
 
 
@@ -226,10 +226,11 @@ There are 7 pages in total. Introduction of those pages is given as below.
 ### Home page
 
 
-The home page consists of two blocks: course search and program category.
+The home page consists of two blocks: course search and program category, shown in Fig. 2.
 
 
-![Home page](./media/home.png)
+![Home page](./media/home.png){ height=50% }
+
 
 #### Search block
 
@@ -246,10 +247,10 @@ Six degree programs in the department of CSE are shown here. Students can click 
 ### Search result page
 
 
-The search result page will show a list of courses matching the searching criteria. Users can click "View" button to go to the course page they are interested in.
+The search result page will show a list of courses matching the searching criteria as Fig. 3. Users can click "View" button to go to the course page they are interested in.
 
 
-![Search result page](./media/search.png)
+![Search result page](./media/search.png){ height=50% }
 
 
 ### Course page
@@ -258,45 +259,46 @@ The search result page will show a list of courses matching the searching criter
 #### Course detail
 
 
-The course page will show course detail including name, credit, description and previous section information. User can click "Edit course" button if they want to update course information.
+The course page shown in Fig. 4 will show course detail including name, credit, description and previous section information. User can click "Edit course" button if they want to update course information.
 
 
-![Course page](./media/courseDetail.png)
+![Course page](./media/courseDetail.png){ height=50% }
 
 
 #### Course update page
 
-Users can update course information on this page. For safety purpose, only name, credit and description are allowed to be updated. Validations will be executed while processing an update request.
+
+Users can update course information on this page as shown in Fig. 5. For safety purpose, only name, credit and description are allowed to be updated. Validations will be executed while processing an update request.
 
 
-![Course update page](./media/courseEdit.png)
+![Course update page](./media/courseEdit.png){ height=50% }
 
 
 ### Program page
 
 
-The program page will show related required course packages and interested course packages. Users can click the "View" button to check the courses inside packages.
+The program page will show related required course packages and interested course packages in Fig. 6. Users can click the "View" button to check the courses inside packages.
 
 
-![Program page](./media/program.png)
+![Program page](./media/program.png){ height=50% }
 
 
 ### Package page
 
 
-The package page will show courses in this package. Course detail page can be accessed here. It also present how many courses are required in this package. Also, users can add or delete courses in this package.
+The package page will show courses in this package shown in Fig. 7. Course detail page can be accessed here. It also present how many courses are required in this package. Also, users can add or delete courses in this package.
 
 
-![Package page](./media/package.png)
+![Package page](./media/package.png){ height=50% }
 
 
 ### Interest page
 
 
-The interest page functions similarly as the package page.
+The interest page functions similarly as the package page, as shown in Fig. 8.
 
 
-![Interest page](./media/interest.png)
+![Interest page](./media/interest.png){ height=50% }
 
 
 ## Project source code
