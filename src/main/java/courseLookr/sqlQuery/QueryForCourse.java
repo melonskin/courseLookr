@@ -3,7 +3,7 @@ package courseLookr.sqlQuery;
 public class QueryForCourse {
     public static final String searchCoursesQuery = "SELECT id, department, number, name, credit, description"
             + " FROM course"
-            + " WHERE department LIKE ? AND number LIKE ? AND name LIKE ?";
+            + " WHERE department LIKE ? AND number LIKE ? AND name LIKE ? LIMIT 25";
     public static final String searchCourse = "SELECT id, department, number, name, credit, description"
             + " FROM course"
             + " WHERE department = ? AND number = ? LIMIT 1";
