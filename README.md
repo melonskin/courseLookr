@@ -217,22 +217,39 @@ For those tables with a unique `id` attribute, we can observe that there are no 
 ## User interface
 
 
+The web-based user interface is built with Java Spring/SpringMVC for framework, MySQL for DBMS, Tomcat for web server, maven for dependency management, Bootstrap for front-end beautify and git for version control. Finally, it was deployed on a ubuntu server rent from DigitalOcean.
+
+
+There are 7 pages in total. Introduction of those pages is given as below.
+
+
 ### Home page
 
 
 The home page consists of two blocks: course search and program category.
 
 
+![Home page](./media/home.png)
+
 #### Search block
 
 
-Users can search courses by entering any combination of 
+Users can search courses by entering any combination of three searching keywords. 
 
 
 #### Program category
 
 
+Six degree programs in the department of CSE are shown here. Students can click on "View" button of those programs to get into program page.
+
+
 ### Search result page
+
+
+The search result page will show a list of courses matching the searching criteria. Users can click "View" button to go to the course page they are interested in.
+
+
+![Search result page](./media/search.png)
 
 
 ### Course page
@@ -241,19 +258,61 @@ Users can search courses by entering any combination of
 #### Course detail
 
 
+The course page will show course detail including name, credit, description and previous section information. User can click "Edit course" button if they want to update course information.
+
+
+![Course page](./media/courseDetail.png)
+
+
 #### Course update page
+
+Users can update course information on this page. For safety purpose, only name, credit and description are allowed to be updated. Validations will be executed while processing an update request.
+
+
+![Course update page](./media/courseEdit.png)
 
 
 ### Program page
 
 
+The program page will show related required course packages and interested course packages. Users can click the "View" button to check the courses inside packages.
+
+
+![Program page](./media/program.png)
+
+
 ### Package page
+
+
+The package page will show courses in this package. Course detail page can be accessed here. It also present how many courses are required in this package. Also, users can add or delete courses in this package.
+
+
+![Package page](./media/package.png)
 
 
 ### Interest page
 
 
+The interest page functions similarly as the package page.
+
+
+![Interest page](./media/interest.png)
+
+
 ## Project source code
 
 
+1. Application source code can be found at https://github.com/melonskin/courseLookr
+2. Data retrieval source code can be found at https://github.com/melonskin/scrapeCourse
+
+
 ## Discussion
+
+
+Initially, developing a good database schema is challenging to me. I tried to understand it better by reading textbook and looking through online discussion, both piazza and other forums. Professor and TA answered my questions completely. Based on my understanding, I designed my database schema and optimized it several times to make it more reasonable.
+
+
+I developed the user interface with Java Spring/SpringMVC framework, which I haven't touched before. By reading books and tutorials, I achieved my project from scratch. I learned a lot about what I have used and some basic concepts related to web and network.
+
+
+The deployment is really a painful but last part of this project. First I developed this application locally on my PC. It works well. For online deployment, I compared those server providers and give up Heroku. Because it does not support MySQL. I have used Heroku before and really like deploying app with only several command in it. Finally, I chose DigitalOcean and configured a blank ubuntu server, installing MySQL, Tomcat, php and other dependencies. A lot of weird problems came out. I struggled to figure all of them out. Especially, I chose a server with 512MB memory initially. It caused me tons of trouble. It took me hours to find that most of problems were related to low memory. Once I upgraded to a server with larger memory, the world is peaceful again. However, during this process, I got a better understanding of linux system, managing database and jobs on server.
