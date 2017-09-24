@@ -39,19 +39,19 @@
             <form class="form-horizontal" method="POST" name="courseForm">
                 <label class="col-sm-2 control-label">Department<br></label>
                 <div class="col-sm-10">
-                    <input type="text" name="department" class="form-control" placeholder="CSCE">
+                    <input type="text" name="department" class="form-control" placeholder="like CSCE">
                     <br>
                 </div>
                 <br>
                 <label class="col-sm-2 control-label">Number<br></label>
                 <div class="col-sm-10">
-                    <input type="text" name="number" class="form-control" placeholder="608">
+                    <input type="text" name="number" class="form-control" placeholder="like 608">
                     <br>
                 </div>
                 <br>
                 <label class="col-sm-2 control-label">Name<br></label>
                 <div class="col-sm-10">
-                    <input type="text" name="name" class="form-control" placeholder="Database">
+                    <input type="text" name="name" class="form-control" placeholder="like database">
                     <br>
                 </div>
                 <br>
