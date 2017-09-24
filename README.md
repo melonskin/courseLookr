@@ -111,7 +111,7 @@ With the database design mentioned above, the E-R diagram can be generated.
 For the application, `Course`, `Section` are used to store the course information crawled online.  User do keyword search in `Course` table based on its attributes. For every course, we could query its sections to check.
 
 
-`Program`, `Package` and `Interest` consist of degree plan information in the graduate brochure. They basically support the categorical search service. For example, `Package` and `Course` have a relationship between them, it represents a course package consists of several courses. Therefore, when user queries for the courses of a package, the application will return a list of courses. 
+`Program`, `Package` and `Interest` consist of degree plan information in the graduate brochure. They basically support the categorical search service. For example, `Package` and `Course` have a relationship between them, it represents a course package consists of several courses. Therefore, when user queries for the courses of a package, the application will return a list of courses needed. 
 
 
 ## Table normalization
@@ -131,6 +131,7 @@ The structures of tables are shown as below.
 
 #### Course
 
+
 | Field     |Key    |
 |----------|---|
 | id       |PRI |
@@ -139,6 +140,9 @@ The structures of tables are shown as below.
 | name   | |
 | credit  | |
 | description | |
+
+
+Note that an auto-incremented `id` attribute is introduced in this table to be the primary key (PRI). The reason is that if we use `department` and `number` as primary keys, we basically cannot change those values, otherwise, it will cause update anomalies to other tables with this attribute as a foreign key (FOR).  This update is totally possible, such as from `CPSC` to `CSCE` as I know. So to be safe, this unique `id` in introduced.
 
 
 #### Section     
@@ -153,7 +157,6 @@ The structures of tables are shown as below.
 |year   | PRI |
 |GPA    | |
 |student    | |
-|Grade A |  |
 |Grade ... |  |
 
 
@@ -199,9 +202,16 @@ Similarly for other "ship" tables.
 |course_id |PRI, FOR |  
 
 
-
-
 ### Discussion
+
+
+Table normalization is unnecessary for our current database design to satisfy BCNF. The definition of BCNF is:
+
+
+A relation $R$ is in BCNF if and only if: whenever there is a nontrivial FD $A_1 A_2...A_n \rightarrow B_1 B_2 ... B_m$ for $R$, it is the case that $\{A_1, A_2, ..., A_n\}$ is a superkey for $R$
+
+
+For those tables with a unique `id` attribute, we can observe that there are no FD within other attributes, so any non-trivial FD must consist of `id` attribute on the left side, thus every tuples on the left side will be unique, in other words, superkey. So these tables are in BCNF. Similarly, for other tables with multiple primary keys, any non-trivial FD must have those primary keys on the left side. Meanwhile, the combination of values of primary keys for a record is unique. Therefore, tuples on the left side of FD are unique, superkey. These tables are in BCNF.
 
 
 ## User interface
