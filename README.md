@@ -310,9 +310,6 @@ SELECT id, department, number, name, credit, description
 The course page shown in Fig. 4 will show course detail including name, credit, description and previous section information. User can click "Edit course" button if they want to update course information.
 
 
-![Course page](./media/courseDetail.png){ height=50% }
-
-
 Following SQL queries are executed to obtain course information and section information.
 
 
@@ -323,6 +320,9 @@ SELECT id, department, number, name, credit, description
 
 SELECT * FROM section WHERE course_id = ? ORDER BY year ASC, term ASC;
 ```
+
+
+![Course page](./media/courseDetail.png){ height=50% }
 
 
 #### Course update page
