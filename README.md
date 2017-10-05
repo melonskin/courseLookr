@@ -8,7 +8,7 @@ geometry: margin=2cm
 ## Project description
 
 
-The URL of this app: http://165.227.22.37:8080/
+The URL of this app: <http://165.227.22.37:8080/>
 
 
 ### Background
@@ -55,31 +55,56 @@ The data used in this application was retrieved from three sources as below.
 
 1. A&M course catalog
     - course ID, name, credit, description
-    - URL: http://catalog.tamu.edu/
+    - URL: <http://catalog.tamu.edu/>
 2. A&M registar report
     - previous section information
-    - URL: https://web-as.tamu.edu/gradereport/
+    - URL: <https://web-as.tamu.edu/gradereport/>
 3. A&M CSE department graduate brochure
     - graduate degree program information
-    - URL: https://engineering.tamu.edu/cse/academics/graduate-program
+    - URL: <https://engineering.tamu.edu/cse/academics/graduate-program>
 
 
 ### Course catalog
 
 
-The catalog information is relatively easy to retrieve since it's web-based and well structured. A web crawler built with python is used to get all information and save them in `csv` format. 5309 rows was retrieved. The source code can be found at https://github.com/melonskin/scrapeCourse.  
+The catalog information is relatively easy to retrieve since it's web-based and well structured. A web crawler built with python is used to get all information and save them in `csv` format. 5309 rows was retrieved. The source code can be found at <https://github.com/melonskin/scrapeCourse>.  
 
 
 ### Registar report
 
 
-First, A web crawler is used to download those reports for 3-year period, which are in PDF-format. Then, an OCR API developed by google is implemented to convert those PDF into txt files. Those data is processed, cleaned and saved in `csv` format. 48491 rows were retrieved. The code is at  https://github.com/melonskin/scrapeCourse.
+First, A web crawler is used to download those reports for 3-year period, which are in PDF-format. Then, an OCR API developed by google is implemented to convert those PDF into txt files. Those data is processed, cleaned and saved in `csv` format. 48491 rows were retrieved. The code is at  <https://github.com/melonskin/scrapeCourse>.
 
 
 ### CSE graduate brochure
 
 
 The degree program and course package information are input manually, since it is relatively short and need some understanding.
+
+
+### Import into database
+
+
+The data is imported into database using SQL `INSERT`. Before that, corresponding tables are created. For example, following SQL queries will create Course table and insert a record.
+
+
+```sql
+DROP TABLE IF EXISTS `course`;
+CREATE TABLE `course`  (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `Department` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `number` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `Name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `credit` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `description` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+```
+
+
+```sql
+INSERT INTO `course` VALUES (1, 'ACCT', '209', 'Survey of Accounting Principles', '3', 'Accounting survey for non-business majors; non-technical accounting procedures, preparation and interpretation of financial statements and internal control. May not be used to satisfy degree requirements for majors in business. Business majors who choose to take this course must do so on a satisfactory/unsatisfactory basis.');
+```
 
 
 ## E-R diagram of DB
@@ -241,13 +266,36 @@ Users can search courses by entering any combination of three searching keywords
 #### Program category
 
 
-Six degree programs in the department of CSE are shown here. Students can click on "View" button of those programs to get into program page.
+Six degree programs in the department of CSE are shown here. Students can click on "View" button of those programs to get into program page. Those program information are obtained by executing following SQL.
+
+
+```sql
+SELECT * FROM program;
+```
+
+
+Once click "View", the SQL query executed is as below.
+
+
+```sql
+SELECT * FROM program WHERE id = ?;
+```
 
 
 ### Search result page
 
 
 The search result page will show a list of courses matching the searching criteria as Fig. 3. Users can click "View" button to go to the course page they are interested in.
+
+
+Based on the user-input parameter, the GUI will do search with following SQL query. It will pick first 25 matching records.
+
+
+```sql
+SELECT id, department, number, name, credit, description
+            FROM course
+            WHERE department LIKE ? AND number LIKE ? AND name LIKE ? LIMIT 25;
+```
 
 
 ![Search result page](./media/search.png){ height=50% }
@@ -265,10 +313,30 @@ The course page shown in Fig. 4 will show course detail including name, credit, 
 ![Course page](./media/courseDetail.png){ height=50% }
 
 
+Following SQL queries are executed to obtain course information and section information.
+
+
+```sql
+SELECT id, department, number, name, credit, description
+            FROM course
+            WHERE department = ? AND number = ? LIMIT 1;
+
+SELECT * FROM section WHERE course_id = ? ORDER BY year ASC, term ASC;
+```
+
+
 #### Course update page
 
 
 Users can update course information on this page as shown in Fig. 5. For safety purpose, only name, credit and description are allowed to be updated. Validations will be executed while processing an update request.
+
+
+The update is done by executing SQL as below.
+
+
+```sql
+UPDATE course SET name = ?, credit = ?, description = ? WHERE id = ?;
+```
 
 
 ![Course update page](./media/courseEdit.png){ height=50% }
@@ -278,6 +346,18 @@ Users can update course information on this page as shown in Fig. 5. For safety 
 
 
 The program page will show related required course packages and interested course packages in Fig. 6. Users can click the "View" button to check the courses inside packages.
+
+The program, package and interest information are obtained with following SQL queries.
+
+
+```sql
+SELECT * FROM program WHERE id = ?;
+
+SELECT * FROM package WHERE program_id = ?;
+
+SELECT * FROM interest WHERE id IN 
+            (SELECT interest_id FROM program_interestship WHERE program_id = ? );
+```
 
 
 ![Program page](./media/program.png){ height=50% }
@@ -289,6 +369,35 @@ The program page will show related required course packages and interested cours
 The package page will show courses in this package shown in Fig. 7. Course detail page can be accessed here. It also present how many courses are required in this package. Also, users can add or delete courses in this package.
 
 
+The package information is obtained by SQL query as below.
+
+
+```sql
+SELECT * FROM program WHERE id = ?;
+```
+
+
+Courses are chosen with the SQL query as 
+
+
+```sql
+SELECT * FROM course WHERE id IN 
+        (SELECT course_id FROM package_courseship WHERE package_id = ? );
+```
+
+
+Insert and delete courses from package can be done with following SQL.
+
+
+```sql
+INSERT INTO package_courseship (package_id, course_id)
+             VALUES(?, ?) ON DUPLICATE KEY UPDATE package_id=package_id;
+
+DELETE FROM package_courseship 
+            WHERE package_id = ? AND course_id = ?;
+```
+
+
 ![Package page](./media/package.png){ height=50% }
 
 
@@ -298,14 +407,43 @@ The package page will show courses in this package shown in Fig. 7. Course detai
 The interest page functions similarly as the package page, as shown in Fig. 8.
 
 
+The interest package information is obtained by SQL query as below.
+
+
+```sql
+SELECT * FROM interest WHERE id = ?;
+```
+
+
+Courses are chosen with the SQL query as 
+
+
+```sql
+SELECT * FROM course WHERE id IN 
+        (SELECT course_id FROM interest_courseship WHERE interest_id = ? );
+```
+
+
+Insert and delete courses from interest package can be done with following SQL.
+
+
+```sql
+INSERT INTO interest_courseship (interest_id, course_id)
+            VALUES(?, ?) ON DUPLICATE KEY UPDATE interest_id=interest_id;
+
+DELETE FROM interest_courseship 
+            WHERE interest_id = ? AND course_id = ?;
+```
+
+
 ![Interest page](./media/interest.png){ height=50% }
 
 
 ## Project source code
 
 
-1. Application source code can be found at https://github.com/melonskin/courseLookr
-2. Data retrieval source code can be found at https://github.com/melonskin/scrapeCourse
+1. Application source code can be found at <https://github.com/melonskin/courseLookr>
+2. Data retrieval source code can be found at <https://github.com/melonskin/scrapeCourse>
 
 
 ## Discussion
