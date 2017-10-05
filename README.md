@@ -73,7 +73,7 @@ The catalog information is relatively easy to retrieve since it's web-based and 
 ### Registar report
 
 
-First, A web crawler is used to download those reports for 3-year period, which is in PDF-format. Then, a OCR API developed by google is implemented to convert those PDF into txt files. Those data is processed, cleaned and saved in `csv` format. 48491 rows were retrieved. The code is at  https://github.com/melonskin/scrapeCourse.
+First, A web crawler is used to download those reports for 3-year period, which are in PDF-format. Then, an OCR API developed by google is implemented to convert those PDF into txt files. Those data is processed, cleaned and saved in `csv` format. 48491 rows were retrieved. The code is at  https://github.com/melonskin/scrapeCourse.
 
 
 ### CSE graduate brochure
