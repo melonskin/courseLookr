@@ -98,12 +98,14 @@ CREATE TABLE `course`  (
   `credit` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `description` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 
+CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 ```
 
 
 ```sql
-INSERT INTO `course` VALUES (1, 'ACCT', '209', 'Survey of Accounting Principles', '3', 'Accounting survey for non-business majors; non-technical accounting procedures, preparation and interpretation of financial statements and internal control. May not be used to satisfy degree requirements for majors in business. Business majors who choose to take this course must do so on a satisfactory/unsatisfactory basis.');
+INSERT INTO `course` VALUES 
+    (1, 'ACCT', '209', 'Survey of Accounting', '3', 'Accounting survey');
 ```
 
 
@@ -316,7 +318,7 @@ Following SQL queries are executed to obtain course information and section info
 ```sql
 SELECT id, department, number, name, credit, description
             FROM course
-            WHERE department = ? AND number = ? LIMIT 1;
+            WHERE department = ? AND number = ?P LIMIT 1;
 
 SELECT * FROM section WHERE course_id = ? ORDER BY year ASC, term ASC;
 ```
