@@ -1,10 +1,3 @@
----
-title:  CourseLookr, a DB-based web app searching courses in A&M 
-author: Shijin Tang, 523005303 
-geometry: margin=2cm
----
-
-
 ## Project description
 
 
