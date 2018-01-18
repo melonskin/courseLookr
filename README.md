@@ -1,9 +1,6 @@
 ## Project description
 
 
-The URL of this app: <http://165.227.22.37:8080/>
-
-
 ### Background
 
 
